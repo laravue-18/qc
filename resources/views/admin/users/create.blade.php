@@ -5,7 +5,7 @@
 @section('content')
     
 <div class="box box-info">
-    <form class="form-horizontal" action="{{url('admin/admins')}}" method="post">
+    <form class="form-horizontal" action="{{route('admin.users.store')}}" method="post">
         @csrf
         <div class="box-body">
             <div class="row">
@@ -20,28 +20,33 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Status</label>
-
-                        <div class="col-sm-8">
-                            <select name="admin" id="" class="form-control">
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">User Name *</label>
-
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" name="name" placeholder="" required>
-                        </div>
-                    </div>
+                    
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Company *</label>
 
                         <div class="col-sm-8">
                             <input type="text" class="form-control" name="company" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Designation</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="designation" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Employee ID</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="employee_id" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Mobile Number</label>
+
+                        <div class="col-sm-8">
+                            <input type="tel" class="form-control" name="phone" placeholder="">
                         </div>
                     </div>
                     <div class="form-group">
@@ -59,31 +64,17 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-4 control-label">Confirm Password *</label>
+
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" name="password" placeholder="" minlength="6" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-4 control-label">Buyer *</label>
 
                         <div class="col-sm-8">
                             <input type="text" class="form-control" name="buyer" placeholder="" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Phone Number</label>
-
-                        <div class="col-sm-8">
-                            <input type="tel" class="form-control" name="phone" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Designation</label>
-
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" name="designation" placeholder="" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Employee ID</label>
-
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" name="employee_id" placeholder="" required>
                         </div>
                     </div>
                     <div class="form-group">

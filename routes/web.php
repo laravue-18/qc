@@ -16,12 +16,15 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return redirect('login');
-});
-Route::get('login', function () {
-    if(Auth::check()) return redirect('home');
-    return view('user.login');
-})->name('user.login');
+    if(Auth::check()){
+        if(auth()->user()->admin)
+            return redirect(route('admin.dashboard'));
+        else
+            return redirect(route('home'));
+    }
+    return view('login');
+})->name('loginform');
+
 Route::middleware('auth')->group(function(){
     Route::get('home',  function(){
         return view('user.home');
@@ -41,10 +44,11 @@ Route::middleware('admin')->group(function(){
     Route::get('/admin/users', 'UserController@index')->name('admin.users.index');
     Route::get('/admin/users/create', 'UserController@create')->name('admin.users.create');
     Route::post('/admin/users', 'UserController@store')->name('admin.users.store');
+    Route::get('/admin/users/{id}', 'UserController@show')->name('admin.users.show');
     Route::get('/admin/users/{id}/edit', 'UserController@edit')->name('admin.users.edit');
     Route::put('/admin/users/{id}', 'UserController@update')->name('admin.users.update');
     Route::get('/admin/users/{id}/delete', 'UserController@destroy')->name('admin.users.destroy');
 });
 
-Route::post('login', [UserController::class, 'login']);
+Route::post('login', [UserController::class, 'login'])->name('login');
 Route::get('logout', [UserController::class, 'logout']);

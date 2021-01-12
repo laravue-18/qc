@@ -6,7 +6,7 @@
         <span>Dashboard</span>
       </a>
     </li>
-    <li class="treeview {{ Request::is('admin/users/*') ? 'menu-open active' : '' }}" style="height: auto;">
+    <li class="treeview {{ Request::is('admin/users*') ? 'menu-open active' : '' }}" style="height: auto;">
       <a href="#">
         <i class="fa fa-users"></i> 
         <span>Manage Users</span>
@@ -14,8 +14,8 @@
           <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
-      <ul class="treeview-menu" style="{{ Request::is('admin/users/*') ? 'display:block;' : '' }}">
-        <li class="{{ Request::is('admin/users/index') ? 'active' : '' }}">
+      <ul class="treeview-menu" style="{{ Request::is('admin/users*') ? 'display:block;' : '' }}">
+        <li class="{{ Request::is('admin/users') ? 'active' : '' }}">
           <a href="{{route('admin.users.index')}}" >
             <i class="fa fa-circle"></i> 
             Users List

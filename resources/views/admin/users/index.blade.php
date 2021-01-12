@@ -11,8 +11,9 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Username</th>
                             <th>Email</th>
+                            <th>Role</th>
+                            <th>Mobile Number</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -20,13 +21,17 @@
                         @foreach($list as $row)
                         <tr>
                             <th>{{$loop->iteration}}</th>
-                            <th>{{$row->name}}</th>
                             <th>{{$row->email}}</th>
+                            <th>{{$row->admin ? 'Admin' : 'User' }}</th>
+                            <th>{{$row->phone}}</th>
                             <th>
-                                <a href="{{route('admin.admins.edit', $row->id)}}">
+                                <a href="{{route('admin.users.show', $row->id)}}" class="btn btn-info mr-2">
+                                    <i class="fa fa-info"></i> 
+                                </a>
+                                <a href="{{route('admin.users.edit', $row->id)}}" class="btn btn-success mr-2">
                                     <i class="fa fa-edit"></i> 
                                 </a>
-                                <a href="{{route('admin.admins.destroy', $row->id)}}">
+                                <a href="{{route('admin.users.destroy', $row->id)}}" class="btn btn-danger">
                                     <i class="fa fa-trash"></i> 
                                 </a>
                             </th>

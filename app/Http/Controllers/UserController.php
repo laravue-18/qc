@@ -19,71 +19,16 @@ class UserController extends Controller
         }
     }
 
-    public function indexAdmins(){
-        $list = User::where('admin', true)->get();
-        return view('admin.admins.index')->with(compact('list'));
-    }
-
-    public function createAdmin(){
-        return view('admin.admins.create');
-    }
-
-    public function storeAdmin(Request $request){
-        // $data = $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|email|unique:users,email',
-        //     'password' => 'required|same:password_confirmation',
-        // ]);
-        // dd('hi');
-        
-        $data = $request->all();
-        $data['password'] = bcrypt($data['password']);
-        $data['admin'] = true;
-        $user = User::create($data);
-        
-        // $code = base64_encode($data['email']);
-        // $url = url('confirm/'.$code) ;
-
-        // $to = $data['email'];
-
-        // Mail::to($to)->send(new ConfirmMail($user));
-
-        return redirect(route('admin.admins.index'))->with('flash_message_success', 'Registered Successfully!');
-    }
-
-    public function editAdmin($id){
-        $user = User::find($id);
-        return view('admin.admins.edit')->with(compact('user'));
-    }
-
-    public function updateAdmin(Request $request, $id){
-        $user = User::find($id);
-        $data = $request->all();
-        $user->password = bcrypt($data['password']);
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->save();
-
-        return redirect(route('admin.admins.index'))->with('flash_message_success', 'Updated Successfully!');
-    }
-
-    public function destroyAdmin($id)
-    {
-        User::destroy($id);
-        return redirect(route('admin.admins.index'))->with('flash_message_success', 'Deleted Successfully!');
-    }
-
-    
-    public function indexUsers(){
-        $list = User::where('admin', false)->get();
+    public function index(){
+        $list = User::all();
         return view('admin.users.index')->with(compact('list'));
     }
 
-    public function createUser(){
+    public function create(){
         return view('admin.users.create');
     }
 
-    public function storeUser(Request $request){
+    public function store(Request $request){
         // $data = $request->validate([
         //     'name' => 'required',
         //     'email' => 'required|email|unique:users,email',
@@ -93,7 +38,6 @@ class UserController extends Controller
         
         $data = $request->all();
         $data['password'] = bcrypt($data['password']);
-        $data['admin'] = true;
         $user = User::create($data);
         
         // $code = base64_encode($data['email']);
@@ -106,23 +50,39 @@ class UserController extends Controller
         return redirect(route('admin.users.index'))->with('flash_message_success', 'Registered Successfully!');
     }
 
-    public function editUser($id){
+    public function show($id){
+        $user = User::find($id);
+        return view('admin.users.show')->with(compact('user'));
+    }
+    public function edit($id){
         $user = User::find($id);
         return view('admin.users.edit')->with(compact('user'));
     }
 
-    public function updateUser(Request $request, $id){
+    public function update(Request $request, $id){
         $user = User::find($id);
         $data = $request->all();
-        $user->password = bcrypt($data['password']);
+        if($data['password'])
+            $user->password = bcrypt($data['password']);
         $user->name = $data['name'];
         $user->email = $data['email'];
+        $user->admin = $data['admin'];
+        $user->company = $data['company'];
+        $user->buyer = $data['buyer'];
+        $user->phone = $data['phone'];
+        $user->designation = $data['designation'];
+        $user->employee_id = $data['employee_id'];
+        $user->factory = $data['factory'];
+        $user->order = $data['order'];
+        $user->style = $data['style'];
+        $user->comment = $data['comment'];
+        $user->status = $data['status'];
         $user->save();
 
         return redirect(route('admin.users.index'))->with('flash_message_success', 'Updated Successfully!');
     }
 
-    public function destroyUser($id)
+    public function destroy($id)
     {
         User::destroy($id);
         return redirect(route('admin.users.index'))->with('flash_message_success', 'Deleted Successfully!');

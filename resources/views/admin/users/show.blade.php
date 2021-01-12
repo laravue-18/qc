@@ -5,7 +5,7 @@
 @section('content')
     
 <div class="box box-info">
-    <form class="form-horizontal" action="{{route('admin.users.update', $user->id)}}" method="post">
+    <form class="form-horizontal">
         @csrf
         @method('put')
         <div class="box-body">
@@ -110,7 +110,7 @@
             </div>
         </div>
         <div class="box-footer">
-            <button type="submit" class="btn btn-info">Update</button>
+            <!-- <button type="submit" class="btn btn-info">Update</button> -->
         </div>
     </form>
 </div>

@@ -23,7 +23,7 @@ class AddColumsToUsers extends Migration
             $table->string('order')->nullable();
             $table->string('style')->nullable();
             $table->text('comment')->nullable();
-            $table->string('status')->default(false);
+            // $table->string('status')->default(false);
         });
     }
 

@@ -36,7 +36,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Login to Quality Control Page</p>
 
-    <form action="" method="post">
+    <form action="{{route('login')}}" method="post">
       @csrf
       <div class="form-group has-feedback">
         <input name="email" type="email" class="form-control" placeholder="Email">
