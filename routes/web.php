@@ -27,7 +27,8 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function(){
     Route::get('home',  function(){
-        return view('user.home');
+        $user = auth()->user();
+        return view('user.home')->with(compact('user'));
     })->name('home');
 });
 
