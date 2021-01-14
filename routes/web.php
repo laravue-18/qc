@@ -38,9 +38,7 @@ Route::get('/admin', function () {
 });
 
 Route::middleware('admin')->group(function(){
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/admin/dashboard', 'UserController@dashboard')->name('admin.dashboard');
 
     Route::get('/admin/users', 'UserController@index')->name('admin.users.index');
     Route::get('/admin/users/create', 'UserController@create')->name('admin.users.create');
@@ -49,6 +47,10 @@ Route::middleware('admin')->group(function(){
     Route::get('/admin/users/{id}/edit', 'UserController@edit')->name('admin.users.edit');
     Route::put('/admin/users/{id}', 'UserController@update')->name('admin.users.update');
     Route::get('/admin/users/{id}/delete', 'UserController@destroy')->name('admin.users.destroy');
+    
+    Route::get('/admin/works', 'UserController@worklist')->name('worklist');
+    Route::get('/admin/works/{id}', 'UserController@workdetail')->name('work_detail');
+    Route::get('/admin/work', 'UserController@work')->name('work');
 });
 
 Route::post('login', [UserController::class, 'login'])->name('login');

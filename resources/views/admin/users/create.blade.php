@@ -9,7 +9,7 @@
         @csrf
         <div class="box-body">
             <div class="row">
-                <div class="col-md-8 ">
+                <div class="col-md-6 ">
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Role</label>
 
@@ -21,6 +21,13 @@
                         </div>
                     </div>
                     
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Name *</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="name" placeholder="" required>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Company *</label>
 
@@ -99,12 +106,29 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-4 control-label">Production Target *</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="quantity" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Production Time *</label>
+
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="period" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-4 control-label">Comment/Remark</label>
 
                         <div class="col-sm-8">
                             <textarea name="comment" id="" cols="30" rows="4" class="form-control"></textarea>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-6">
+                    
                 </div>
             </div>
         </div>

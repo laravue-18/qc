@@ -12,36 +12,51 @@ class Counter extends Component
     public $alter = 0;
     public $washing = 0;
     public $sewing = 0;
-    public $other1 = 0;
-    public $other2 = 0;
+    public $finishing = 0;
+    public $other = 0;
 
     public function increment(){
         $this->count++;
     }
     public function pass(){
-        $this->pass++;
+        $user = auth()->user();
+        $user->pass++;
+        $user->save();
     }
     public function reject(){
-        $this->reject++;
+        $user = auth()->user();
+        $user->reject++;
+        $user->save();
     }
     public function alter(){
-        $this->alter++;
+        $user = auth()->user();
+        $user->alter++;
+        $user->save();
     }
     public function washing(){
-        $this->washing++;
+        $user = auth()->user();
+        $user->washing++;
+        $user->save();
     }
     public function sewing(){
-        $this->sewing++;
+        $user = auth()->user();
+        $user->sewing++;
+        $user->save();
     }
-    public function other1(){
-        $this->other1++;
+    public function finishing(){
+        $user = auth()->user();
+        $user->finishing++;
+        $user->save();
     }
-    public function other2(){
-        $this->other2++;
+    public function other(){
+        $user = auth()->user();
+        $user->other++;
+        $user->save();
     }
 
     public function render()
     {
-        return view('livewire.counter');
+        $user = auth()->user();
+        return view('livewire.counter')->with(compact('user'));
     }
 }

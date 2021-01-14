@@ -29,7 +29,7 @@
         </li>
       </ul>
     </li>
-    <li class="treeview {{ Request::is('admin/users/*') ? '' : '' }}" style="height: auto;">
+    <li class="treeview {{ Request::is('admin/work*') ? 'menu-open active' : '' }}" style="height: auto;">
       <a href="#">
         <i class="fa fa-users"></i> 
         <span>Perform QC Work</span>
@@ -37,15 +37,15 @@
           <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
-      <ul class="treeview-menu" style="{{ Request::is('admin/users/*') ? '' : '' }}">
-        <li class="{{ Request::is('admin/users/index') ? 'active' : '' }}">
-          <a href="{{route('admin.users.index')}}" >
+      <ul class="treeview-menu" style="{{ Request::is('admin/work*') ? 'display:block' : '' }}">
+        <li class="{{ Request::is('admin/works') ? 'active' : '' }}">
+          <a href="{{route('worklist')}}" >
             <i class="fa fa-circle"></i> 
             Work List
           </a>
         </li>
-        <li class="{{ Request::is('admin/users/create') ? 'active' : '' }}">
-          <a href="{{route('admin.users.create')}}">
+        <li class="{{ Request::is('admin/work') ? 'active' : '' }}">
+          <a href="{{route('work')}}">
             <i class="fa fa-circle"></i> 
             QC Work
           </a>

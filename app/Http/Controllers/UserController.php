@@ -19,6 +19,20 @@ class UserController extends Controller
         }
     }
 
+    public function dashboard(){
+        $admin_count = User::where('admin', true)->count();
+        $user_count = User::where('admin', false)->count();
+        $pass = User::all()->sum('pass');
+        $alter = User::all()->sum('alter');
+        $washing = User::all()->sum('washing');
+        $sewing = User::all()->sum('sewing');
+        $finishing = User::all()->sum('finishing');
+        $reject = User::all()->sum('reject');
+        $other = User::all()->sum('other');
+
+        return view('admin.dashboard')->with(compact('admin_count', 'user_count', 'pass', 'alter', 'washing', 'sewing', 'finishing', 'reject', 'other'));
+    }
+
     public function index(){
         $list = User::all();
         return view('admin.users.index')->with(compact('list'));
@@ -86,6 +100,20 @@ class UserController extends Controller
     {
         User::destroy($id);
         return redirect(route('admin.users.index'))->with('flash_message_success', 'Deleted Successfully!');
+    }
+
+    public function worklist(){
+        return view('admin.worklist');
+    }
+
+    public function workdetail($id){
+        $user = User::find($id);
+        return view('admin.work_detail')->with(compact('user'));
+    }
+    
+    public function work(){
+        $user = auth()->user();
+        return view('admin.work')->with(compact('user'));
     }
 
     public function logout(){
